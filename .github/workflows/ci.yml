@@ -11,8 +11,10 @@ jobs:
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
-      pages: "write"      # to deploy to Pages
-      id-token: "write"   # to verify the deployment originates from an appropriate source
+      contents: "read"      # to read the repository contents
+      pull-requests: "read" # to read pull requests
+      pages: "write"        # to deploy to Pages
+      id-token: "write"     # to verify the deployment originates from an appropriate source
 
     # Deploy to the github-pages environment
     environment:
@@ -27,7 +29,7 @@ jobs:
       - uses: "actions/checkout@v4"
 
       # Optional: Install your preferred Python version and set up caches
-      - uses: "actions/setup-python@v4"
+      - uses: "actions/setup-python@v5"
         with:
           python-version: "3.11"
           cache: "pip"
@@ -40,5 +42,8 @@ jobs:
         with:
           scripts: "demos/box.py|demos/cycloidal_gear.py|demos/parametric_enclosure.py|demos/build123d_tea_cup.py"
           # formats: "STL|STEP|AMF|SVG|TJS|DXF|VRML|VTP|3MF|GLTF"
+          # tolerance: "0.1"
+          # angular-tolerance: "0.1"
+          y-up: "true" # Defaults to false
           # website: "."
           # website-screenshot: "true"
